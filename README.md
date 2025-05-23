@@ -1,14 +1,14 @@
 
 <div align="center">
 
-# JPA: <br> Jailbreaking Prompt Attack:<br> A Controllable Adversarial Attack <br> against Diffusion Models
+# 🍓💥 JPA <br> Jailbreaking Prompt Attack:<br> A Controllable Adversarial Attack <br> against Diffusion Models
 </div>
 
 Welcome to the official implementation of the paper: [Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models](https://arxiv.org/abs/2404.02928). This work introduces one fast and efficient attack methods to generate toxic content for safety-driven diffusion models.
 <table align="center">
   <tr>
     <td align="center"> 
-      <img src="imgs/main.pdf" alt="Image 1" style="width: 1000px;"/> 
+      <embed src="imgs/main.pdf" width="1000" height="600" />
       <br>
     </td>
   </tr>
@@ -89,7 +89,7 @@ For ```style```:
 <table align="center">
   <tr>
     <td align="center"> 
-      <img src="imgs/guide_name.pdf" alt="Result Image 2" style="width: 1000px;"/> 
+      <embed src="imgs/guide_name.pdf" width="1000" height="600" />
       <br>
       <div align="center"><b>Figure 3:</b> Concepts pairs of the general concepts.</div>
     </td>
@@ -100,7 +100,7 @@ For ```style```:
 <table align="center">
   <tr>
     <td align="center"> 
-      <img src="imgs/process.pdf" alt="Result Image 3" style="width: 1000px;"/> 
+      <embed src="imgs/process.pdf" width="1000" height="600" />
       <br>
       <div align="center"><b>Figure 4:</b> Visualization of the concept rendering process showing step-by-step progression.</div>
     </td>

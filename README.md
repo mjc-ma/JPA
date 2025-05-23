@@ -8,8 +8,7 @@ Welcome to the official implementation of the paper: [Jailbreaking Prompt Attack
 <table align="center">
   <tr>
     <td align="center"> 
-      <embed src="https://github.com/mjc-ma/JPA/blob/main/imgs/main.pdf" width="1000" height="600" />
-                 
+      <embed src="https://github.com/mjc-ma/JPA/blob/8c8585bf1e69ad491f111671c6dbead957c5f8b0/imgs/main.pdf" width="1000" height="600" />
       <br>
     </td>
   </tr>

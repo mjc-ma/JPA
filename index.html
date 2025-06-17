@@ -2,172 +2,152 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Official website for NACCL 2025 paper: Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models ">
+  <meta property="og:title" content="Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models "/>
+  <meta property="og:description" content="Official website for ICCV 2023 paper: Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models "/>
+  <meta property="og:url" content="https://siquanhuang.github.io/Multi-metrics/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/overview.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models ">
+  <meta name="twitter:description" content="Official website for ICCV 2023 paper: Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models ">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Diffusion Models, Adversarial Attack, Jailbreak, Trustworthy AI">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <!-- MathJax Configuration -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
   </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+  <title>Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models </title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
-
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+            <h1 class="title is-1 publication-title">Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models </h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Jiachen Ma</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Yijiang Li</a><sup>2</sup>,</span>
+                  <span class="author-block">
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Zhiqing Xiao</a></a><sup>1</sup>,</span>
                   </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                  <span class="author-block">
+                    <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Anda Cao</a><sup>1</sup>,</span>
                   </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
+                  <span class="author-block">
+                    <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Jie Zhang</a><sup>3</sup>,</span>
                   </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
+                  <span class="author-block">
+                    <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Chao Ye</a><sup>1</sup>,</span>
                   </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
+                  <span class="author-block">
+                    <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Junbo Zhao</a><sup>1</sup>,</span>
                   </span>
-                  <span>Data</span>
-                  </a>
-            </div>
+                  
 
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>Zhejiang University, <sup>2</sup>UC San Diego, <sup>3</sup>ETH Zurich<br>
+                      <div class="column has-text-centered">
+                        <span class="link-block">
+                          <a href="https://iccv2023.thecvf.com/" target="_blank"
+                             class="external-link button is-normal is-rounded"
+                             style="background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%); color: #fff; font-weight: 800; box-shadow: 0 8px 32px rgba(24,90,157,0.18); border: none; transition: all 0.25s cubic-bezier(.25,.8,.25,1); transform: translateY(-3px) scale(1.05); padding: 2.2em 2.6em; letter-spacing: 1.2px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 2.5em;">
+                            <span class="icon" style="margin-right: 10px;">
+                              <i class="fas fa-trophy" style="color: #ffe066; font-size: 1.5em; text-shadow: 0 0 16px rgba(255,224,102,0.8), 0 0 4px #fff;"></i>
+                            </span>
+                            <span style="display:inline-block; vertical-align:middle;">
+                              <span style="display:block; text-transform: uppercase; font-size: 1.08em; letter-spacing: 2px; color: #fff; text-shadow: 0 2px 10px rgba(24,90,157,0.18), 0 0 2px #43cea2;">
+                                Accepted by
+                              </span>
+                              <span style="display:block; font-size:1.1em; font-weight:700; margin-top:0.15em; letter-spacing:1.5px; color:#ffe066; text-shadow: 0 2px 10px rgba(24,90,157,0.18), 0 0 2px #43cea2;">
+                                NACCL 2025 (Finding)
+                              </span>
+                            </span>
+                          </a>
+                        </span>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2404.02928" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/mjc-ma/JPA" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="static/pdfs/poster.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -175,316 +155,282 @@
   </div>
 </section>
 
+
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
+      <img src="static/images/overview.png" alt="overview" class="center-image"  style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        Overview of our defense process with step 1 and step 2 as core contributions.
       </h2>
     </div>
   </div>
 </section>
 
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
+<!-- Paper abstract -->
+<section class="section hero is-light">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            Text-to-image (T2I) models can be maliciously used to generate harmful content such as sexually explicit, unfaithful, and misleading or Not-Safe-for-Work (NSFW) images. Previous attacks largely depend on the availability of the diffusion model or involve a lengthy optimization process. 
+            In this work, we investigate a more practical and universal attack that does not require the presence of a target model and demonstrate that the high-dimensional text embedding space inherently contains NSFW concepts that can be exploited to generate harmful images. We present the <b><u>J</u>ailbreaking <u>P</u>rompt <u>A</u>ttack</b> (<i>JPA</i>). <i>JPA</i> first searches for the target malicious concepts in the text embedding space using a group of antonyms generated by ChatGPT. Subsequently, a prefix prompt is optimized in the discrete vocabulary space to align malicious concepts semantically in the text embedding space.
+            We further introduce a soft assignment with gradient masking technique that allows us to perform gradient ascent in the discrete vocabulary space. We perform extensive experiments with open-sourced T2I models and closed-sourced online services with black-box safety checkers. Results show that (1) JPA bypasses both text and image safety checkers (2) while preserving high semantic alignment with the target prompt. (3) JPA demonstrates a much faster speed than previous methods and can be executed in a fully automated manner. These merits render it a valuable tool for robustness evaluation in future text-to-image generation research.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
+We perform extensive experiments with open-sourced T2I models, e.g.~\citep{stable-diffusion-v1-4} and closed-sourced online services, e.g. ~\citep{ramesh2022hierarchical,midjourney,podell2023sdxl}  with black-box safety checkers. Results show that (1) JPA bypasses both text and image safety checkers (2) while preserving high semantic alignment with the target prompt. (3) JPA demonstrates a much faster speed than previous methods and can be executed in a fully automated manner. These merits render it a valuable tool for robustness evaluation in future text-to-image generation research.
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
 
-<section class="section">
+
+
+<section class="section hero is-small">
   <div class="container is-max-desktop">
-
     <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
+      <div class="column is-full">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
+         <h2 class="title is-3">Gradient Features</h2>
+          <div class="level-set has-text-justified">
             <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
+              The essential logic of distance-based defense involves defining some indicative metric that can well discriminate the malicious gradients from the benign ones and removes
+the hostile updates from the aggregation. Consequently, the core problem becomes how to define a metric that identifies the characteristics of hostile gradients.
+          </p>
         </div>
+          <div style="display: flex; justify-content: center;">
+            <img src="static/images/gradient_feature.png" alt="gradient_feature" class="blend-img-background" style="max-width: 60%; height: auto;"/>
+          </div>
+          <p> Demonstration of  <em><strong>feature of gradient</strong></em> on two dimensional space. $\boldsymbol{w}_0$ is initial global model $\boldsymbol{w}_0$ and $\boldsymbol{w}_i$ is the local model of the $i$-th client. $\boldsymbol{w}_i - \boldsymbol{w}_0$ is the gradient and we define the \textit{feature of gradient} as $(|x+y|,l,\theta)$.</p>
+        </p>
+      </div>
       </div>
     </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
   </div>
+</div>
 </section>
 
 
-<section class="section" id="BibTeX">
+<section class="section hero is-small is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+         <h2 class="title is-3">Pitfall of Distance-based Defense</h2>
+          <div class="level-set has-text-justified">
+            <p>
+              To begin with, the Euclidean distance
+              suffers from the so-called “curse of dimensionality”, which renders distance metrics less sensitive in high dimensional space.
+          </p>
+          <br>
+        </div>
+      <div class="content">
+        <div class="theorem-block">
+          <p>
+            <strong>Theorem 1 (Beyer et al. The curse of dimensionality)</strong><br>
+            <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
+              If 
+              $$\lim_{d \rightarrow \infty} \mathrm{var}\left(\frac{\|X_d\|_k}{E[\|X_d\|_k]}\right) = 0,$$
+              then
+              $$\frac{D_{\max,d}^k - D_{\min,d}^k}{D_{\min,d}^k} \xrightarrow{p} 0,$$
+              where $d$ denotes the dimensionality of the data space, $E[X]$ and $\mathrm{var}[X]$ denote the expected value and variance of a random variable $X$, $D_{\max,d}^k$ and $D_{\min,d}^k$ are the farthest/nearest distances of $N$ points to the origin using the $L_k$ distance metric.
+            </span>
+          </p>
+        </div>
+        <p>
+          To find out which distance metric is more meaningful in high-dimensional space, we size up the relation between the dimension $d$ and the distance $L_k$. We have Lemma 1, which shows that $D_{\max,d}^k - D_{\min,d}^k$ increases at the ratio of $d^{(1/k)-(1/2)}$.
+        </p>
+        <div class="lemma-block">
+          <p>
+            <strong>Lemma 1 (Hinneburg et al.)</strong><br>
+            <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
+              Let $\mathcal{F}$ be an arbitrary distribution of two points and the distance function $\|\cdot\|$ be an $L_k$ metric. Then,
+              $$\lim_{d \rightarrow \infty} E\left[\frac{D_{\max,d}^k - D_{\min,d}^k}{d^{(1/k)-(1/2)}}\right] = C_k,$$
+              where $C_k$ is some constant dependent on $k$.
+            </span>
+          </p>
+        </div>
+        <p>
+          Subsequently, we use the value of $D_{\max,d}^k - D_{\min,d}^k$ as a criterion to evaluate the ability of a particular metric to discriminate different vectors in high-dimensional space.
+        </p>
+        <div class="proposition-block">
+          <p>
+            <strong>Proposition 1</strong><br>
+            <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
+              Let $M_d = D_{\max,d}^1 - D_{\min,d}^1$ reflect the discriminating ability of Manhattan distance and $U_d = D_{\max,d}^2 - D_{\min,d}^2$ reflect the discriminating ability of Euclidean distance. Then,
+              $$\lim_{d \rightarrow \infty} E\left[\frac{M_d}{U_d \cdot d^{1/2}}\right] = C',$$
+              where $C'$ is a constant.
+            </span>
+          </p>
+        </div>
+        <br>
+        <p>
+          In light of Proposition 1 and Theorem 1, we argue that Euclidean distance is insufficient to discriminate between malicious and benign gradients. With Proposition 1, we introduce the Manhattan distance metric to describe the characteristics of gradients, which captures the difference in high-dimensional space better.
+        </p>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="multiple-metrics-feature">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
+    <h2 class="title is-3">Multiple Metrics as Feature of Gradient</h2>
+    <p>
+      Current defense methods are based on a single metric. With only one metric, a sophisticated attacker could effortlessly bypass them with a well-designed gradient.
+    </p>
+    <p>
+      To this end, we propose multiple metrics to cooperatively identify the malicious gradient by defining the <em>feature of gradient</em> as the angle by the Cosine similarity, length by the Euclidean distance, and its Manhattan norm by the Manhattan distance, namely,
+      
+      $$\boldsymbol{x} = (x_{Man}, x_{Eul}, x_{Cosine})$$
+
+      where $x_{Man}$ denotes the Manhattan distance $x_{Man}^{(i)} = \left\| \boldsymbol{w}_i - \boldsymbol{w}_0 \right\|_1$, $x_{Eul}$ denotes the Euclidean distance $x_{Eul}^{(i)} = \left\| \boldsymbol{w}_i - \boldsymbol{w}_0 \right\|_2$, and $x_{Cosine}$ denotes the Cosine similarity $x_{Cosine}^{(i)} = \frac{ \langle \boldsymbol{w}_0, \boldsymbol{w}_i \rangle }{ \left\| \boldsymbol{w}_0 \right\| \cdot \left\| \boldsymbol{w}_i \right\| }$.
+    </p>
+
+    <p>
+      Here, $\boldsymbol{w}_0$ denotes the global model before federated training and $\boldsymbol{w}_i$ denotes the $i$-th client's local model after training. $\left\|\cdot\right\|_1$ means the $L_1$ norm of a vector, $\left\|\cdot\right\|_2$ means the $L_2$ norm of a vector, and $\langle\cdot, \cdot\rangle$ represents the inner product.
+    </p>
+    <p>
+      After defining the <em>feature of gradient</em>, we utilize it for malicious identification. The goal is to identify the outlier among the gradients. We use the sum of the distance between each gradient as the indicator. Formally, we define it as:
+    </p>
+    <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
+      \begin{equation}
+          \label{redefinition}
+          \begin{split}
+              &\boldsymbol{x}'^{(i)} = \Bigg(
+                \sum_{j,\,j \neq i}^{K} \left| x_{Man}^{(i)} - x_{Man}^{(j)} \right|
+              &\qquad\qquad\sum_{j,\,j \neq i}^{K} \left| x_{Eul}^{(i)} - x_{Eul}^{(j)} \right|,
+              &\qquad\qquad\sum_{j,\,j \neq i}^{K} \left| x_{Cosine}^{(i)} - x_{Cosine}^{(j)} \right|
+              \Bigg)
+          \end{split}
+      \end{equation}
+    </span>
+    <p>
+      This formulation enables us to capture the deviation of each client's gradient feature from the others, facilitating robust identification of malicious updates in federated learning.
+    </p>
+  </div>
+</section>
+
+<section class="section hero is-small is-light" id="dynamic-weighting">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Dynamic Weighting via Whitening</h2>
+    <p>
+      Two main challenges arise in the scoring meof each gradient: (1) the three distance metrics have different scales and are correlated, making simple normalization insufficient; (2) varying data distributions (such as different levels of non-IID) require the method to adapt dynamically for universal defense.
+    </p>
+    <p>
+      To address these, we apply a <strong>whitening process</strong> that projects each gradient's feature onto its principal axes.
+    </p>
+    
+      $$
+        \delta^{(i)} = \sqrt{ \boldsymbol{x}'^{(i)\top} \boldsymbol{\Sigma}^{-1} \boldsymbol{x}'^{(i)} }
+      $$
+
+    <p>
+      where $\boldsymbol{\Sigma}$ is the covariance matrix of all clients' features. 
+    </p>
+    <p>
+      With the scores computed, we select gradients with higher scores, as they are less divergent and more likely to be benign. These selected gradients can then be aggregated using standard methods, such as FedAvg.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="results" >
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Results</h2>
+    <p>
+      Only our method and Flame successfully resist the
+      Edge-case PGD attack during the entire training process, and Flame also dampens the MA. 
+    </p>
+
+    <figure style="text-align:center;">
+      <img src="static/images/cifar.png" alt="cifar_pgd" style="max-width: 80%;">
+      <figcaption>The source results of various defenses against Edge-case PGD attack are in log. The figure shows MA(%) and BA(%) of various defenses under Edge-case PGD attack.</figcaption>
+    </figure>
+
+    <p>
+      we show that our method obtains the highest ranking score with almost 400% better than the baseline and outperforms the second-best Flame by around 0.5.
+    </p>
+
+    <figure style="text-align:center;">
+      <img src="static/images/table.png" alt="t-SNE visualization of gradient features" style="max-width: 100%;">
+      <figcaption>Robustness of our approach compared to the SOTA defenses for various challenging attacks.</figcaption>
+    </figure>
+
+    <p>
+      For more details and ablation studies, please refer to our <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Huang_Multi-Metrics_Adaptively_Identifies_Backdoors_in_Federated_Learning_ICCV_2023_paper.pdf">paper</a>.
+    </p>
   </div>
 </section>
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
+<!-- Paper poster -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title has-text-centered">Poster</h2>
+
+      <iframe  src="static/pdfs/poster.pdf" width="100%" height="1000">
+          </iframe>
+        
+      </div>
     </div>
+  </section>
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title has-text-centered">Citation</h2>
+      <p>If you find our work useful in your research, please consider citing:</p>
+      <pre><code>@InProceedings{Huang_2023_ICCV,
+  author    = {Huang, Siquan and Li, Yijiang and Chen, Chong and Shi, Leyu and Gao, Ying},
+  title     = {Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models },
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  month     = {October},
+  year      = {2023},
+  pages     = {4652-4662}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
+
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
+
         </div>
       </div>
     </div>
   </div>
 </footer>
 
-</body>
-</html>
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>

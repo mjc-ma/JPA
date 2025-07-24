@@ -139,7 +139,7 @@
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="static/pdfs/poster.pdf" target="_blank"
+                  <a href="static/pdfs/JPA_poster.pdf" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fas fa-chalkboard-teacher"></i>
@@ -159,9 +159,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/overview.png" alt="overview" class="center-image"  style="max-width: 100%; height: auto;"/>
+      <img src="static/images/strength.png" alt="overview" class="center-image"  style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
-        Overview of our defense process with step 1 and step 2 as core contributions.
+       
       </h2>
     </div>
   </div>
@@ -185,7 +185,7 @@
   </div>
 </section>
 
-We perform extensive experiments with open-sourced T2I models, e.g.~\citep{stable-diffusion-v1-4} and closed-sourced online services, e.g. ~\citep{ramesh2022hierarchical,midjourney,podell2023sdxl}  with black-box safety checkers. Results show that (1) JPA bypasses both text and image safety checkers (2) while preserving high semantic alignment with the target prompt. (3) JPA demonstrates a much faster speed than previous methods and can be executed in a fully automated manner. These merits render it a valuable tool for robustness evaluation in future text-to-image generation research.
+We perform extensive experiments with open-sourced T2I models, e.g.stable-diffusion-v1-4 and closed-sourced online services, e.g. DALL·E2, Midjourney with black-box safety checkers. Results show that (1) JPA bypasses both text and image safety checkers (2) while preserving high semantic alignment with the target prompt. (3) JPA demonstrates a much faster speed than previous methods and can be executed in a fully automated manner. These merits render it a valuable tool for robustness evaluation in future text-to-image generation research.
 </p>
         </div>
       </div>
@@ -196,241 +196,194 @@ We perform extensive experiments with open-sourced T2I models, e.g.~\citep{stabl
 
 
 
-<section class="section hero is-small">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div class="content">
-         <h2 class="title is-3">Gradient Features</h2>
-          <div class="level-set has-text-justified">
-            <p>
-              The essential logic of distance-based defense involves defining some indicative metric that can well discriminate the malicious gradients from the benign ones and removes
-the hostile updates from the aggregation. Consequently, the core problem becomes how to define a metric that identifies the characteristics of hostile gradients.
-          </p>
-        </div>
-          <div style="display: flex; justify-content: center;">
-            <img src="static/images/gradient_feature.png" alt="gradient_feature" class="blend-img-background" style="max-width: 60%; height: auto;"/>
-          </div>
-          <p> Demonstration of  <em><strong>feature of gradient</strong></em> on two dimensional space. $\boldsymbol{w}_0$ is initial global model $\boldsymbol{w}_0$ and $\boldsymbol{w}_i$ is the local model of the $i$-th client. $\boldsymbol{w}_i - \boldsymbol{w}_0$ is the gradient and we define the \textit{feature of gradient} as $(|x+y|,l,\theta)$.</p>
-        </p>
-      </div>
-      </div>
-    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JPA: Jailbreaking Prompt Attack</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      line-height: 1.6;
+    }
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+    img {
+      max-width: 100%;
+      margin: 20px 0;
+      display: block;
+    }
+    .caption {
+      font-style: italic;
+      font-size: 0.95em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Insights</h2>
+  <p>
+      We denote the T2I model as <code>𝔽(·)</code> with a frozen text encoder <code>𝒯(·)</code>, the target prompt as <code>pₜ</code>, and the generated image as <code>𝔽(pₜ)</code>. If a prompt <code>p</code> is flagged by any safety checker <code>ℋ</code>, then <code>𝔽(p) = ∅</code>. Removal-based methods aim to avoid unsafe concepts <code>c ∈ 𝒞</code> (e.g., via noise subtraction: <code>ϵ(pₜ) - ϵ(c)</code>), producing a modified image <code>𝔽′(pₜ)</code> that bypasses the checker.
+  </p>
+  <p>
+      An adversarial prompt <code>pₐ</code> satisfies <code>ℋ(𝔽, pₐ) = 0</code> and <code>𝔽(pₐ)</code> ≈ <code>𝔽(pₜ)</code> semantically. We focus on prompts within a red-circled space <code>𝒫</code> that both (1) can generate unsafe images and (2) are affected by checkers. This space is divided into <code>𝒫_sensitive ∪ 𝒫_insensitive</code>.
+  </p>
+  <p>
+      The attack goal is to find a mapping <code>𝒥: 𝒫_sensitive → 𝒫_insensitive</code> such that <code>𝔽(𝒫_insensitive) = 𝕀_unsafe</code>. So, for any <code>pₜ ∈ 𝒫_sensitive</code>, we seek <code>pₐ ∈ 𝒫_insensitive</code> that bypasses <code>ℋ</code> while maintaining visual semantics. Our hypothesis is that NSFW concepts are embedded in the high-dimensional embedding space. Thus, optimizing prefix tokens not flagged by safety checkers can maintain semantics while achieving attacks.
+  </p>
+  
+  <h2>Visualization</h2>
+  <p>
+      We illustrate how the parameter <code>r</code> influences the process of controllable ordinary concept rendering. Here, <code>r₊</code> and <code>r₋</code> mark the concept words highlighted in red and underlined, respectively.
+  </p>
+  
+  <div style="text-align: center;">
+      <img src="images/render_small.png" alt="Guide Name" style="width:100%;">
+      <p>Figure 2: The rendered detail of a target prompt and the contrast description of the rendered concept.</p>
+  
+      <img src="images/render.png" alt="Guide Process" style="width:95%;">
+      <p>Figure 3: A visualization of the controllable ordinary concepts rendering process.</p>
   </div>
+  <h2>JPA: Jailbreaking Prompt Attack</h2>
+
+  <p>
+    In this section, we introduce our Jailbreaking Prompt Attack (JPA), as shown in Figure 4(a). Given a sensitive prompt \( p_t \in \mathcal{P}_\text{sensitive} \), JPA aims to search for an adversarial prompt \( p_a \in \mathcal{P}_\text{insensitive} \).
+  </p>
+
+  <p>
+    Denote a target prompt of length \( n \) as \( p_t = [p_1, p_2, \cdots, p_n] \). JPA starts by adding \( k \) learnable tokens at the beginning as the initial prompt:
+    \( p_a = [v_1,...,v_i,...,v_k, p_1, p_2, \cdots, p_n] \).
+    Each learnable token \( v_i \) is first randomly selected from the vocabulary \( V \), such as the CLIP token vocabulary.
+  </p>
+
+  <p>
+    We enable the gradient of all \( v_i \) and perform backpropagation to calculate the gradient for optimizing the attack. For each learnable token position \( i \), any token from a vocabulary \( V \) is considered a potential substitute.
+  </p>
+
+  <img src="images/main.png" alt="JPA Diagram">
+  <div class="caption">
+    Figure 4: (a) Overview of the Jailbreaking Prompt Attack (JPA)... (b) Safety checkers either suppress sensitive prompts or sanitize them. Our insight is to find adversarial prompts that evade detection while preserving NSFW semantics.
+  </div>
+
+  <p>
+    We optimize \( p_a \) to align with targeted NSFW concepts. Given a specific concept like "nudity", we generate \( N \) antonym pairs (e.g., "nude" vs "clothed") using ChatGPT-4 and compute:
+  </p>
+
+  <p>
+    \[
+    r = \frac{1}{N}\sum_{i=1}^n \mathcal{T}(r_i^+) - \mathcal{T}(r_i^-)
+    \]
+  </p>
+
+  <p>
+    We then construct the modified prompt embedding:
+    \[
+    \mathcal{T}(p_r) = \mathcal{T}(p_t) + \lambda \cdot r
+    \]
+    which contains both the semantic fidelity of the original prompt and the NSFW direction.
+  </p>
+
+  <p>
+    To retrieve a discrete prompt \( p_a \) from the continuous embedding space, we optimize cosine similarity:
+    \[
+    \max_{p_a}\frac{\mathcal{T}(p_a)\cdot  \mathcal{T}(p_r)}{| \mathcal{T}(p_a)|\cdot| \mathcal{T}(p_r)|}
+    \]
+  </p>
+
+  <p>
+    We use PGD (Projected Gradient Descent) for the search, with softmax relaxation over vocabulary:
+    \[
+    \text{embed}[i] = \sum_{k=1}^L \frac{e^{v_{ik}}}{\sum_{h=1}^L e^{v_{ih}}} E_k
+    \]
+    where \( L \) is vocabulary size, \( E \) is the embedding matrix, and \( v_{ik} \) is the soft assignment.
+  </p>
+
+  <p>
+    After optimization, the final token at each position is selected as:
+    \[
+    v_i = \arg \max_k v_{ik}
+    \]
+  </p>
+
+  <p>
+    Since this optimization often yields highly sensitive tokens, we apply gradient masking: for sensitive words, we assign large negative gradients (e.g., 1e9) to avoid their selection. This ensures adversarial prompts retain NSFW semantics without triggering safety mechanisms.
+  </p>
+
+  <h2>Main Results</h2>
+
+<h3>Evaluation with Online Services</h3>
+<p>
+    Despite the deployment of various safety checkers in online services, which remain unknown to the public, Figure below demonstrates that <strong>JPA can successfully bypass these defenses</strong> and generate NSFW images.
+    We conduct attacks on four popular online platforms: <em>DALL·E 2</em>, <em>Stability.ai</em>, <em>Midjourney</em>, and <em>PIXART-α</em>. More visualization examples are provided in the Appendix.
+</p>
+
+<img src="images/dalle.png" alt="Visualization of Adversarial Prompts">
+<div class="caption">
+  Figure 5: Visualization of JPA-generated adversarial prompts on four T2I services. Red texts are JPA prompts, black texts are original I2P inputs.
 </div>
-</section>
 
-
-<section class="section hero is-small is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full">
-        <div class="content">
-         <h2 class="title is-3">Pitfall of Distance-based Defense</h2>
-          <div class="level-set has-text-justified">
-            <p>
-              To begin with, the Euclidean distance
-              suffers from the so-called “curse of dimensionality”, which renders distance metrics less sensitive in high dimensional space.
-          </p>
-          <br>
-        </div>
-      <div class="content">
-        <div class="theorem-block">
-          <p>
-            <strong>Theorem 1 (Beyer et al. The curse of dimensionality)</strong><br>
-            <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
-              If 
-              $$\lim_{d \rightarrow \infty} \mathrm{var}\left(\frac{\|X_d\|_k}{E[\|X_d\|_k]}\right) = 0,$$
-              then
-              $$\frac{D_{\max,d}^k - D_{\min,d}^k}{D_{\min,d}^k} \xrightarrow{p} 0,$$
-              where $d$ denotes the dimensionality of the data space, $E[X]$ and $\mathrm{var}[X]$ denote the expected value and variance of a random variable $X$, $D_{\max,d}^k$ and $D_{\min,d}^k$ are the farthest/nearest distances of $N$ points to the origin using the $L_k$ distance metric.
-            </span>
-          </p>
-        </div>
-        <p>
-          To find out which distance metric is more meaningful in high-dimensional space, we size up the relation between the dimension $d$ and the distance $L_k$. We have Lemma 1, which shows that $D_{\max,d}^k - D_{\min,d}^k$ increases at the ratio of $d^{(1/k)-(1/2)}$.
-        </p>
-        <div class="lemma-block">
-          <p>
-            <strong>Lemma 1 (Hinneburg et al.)</strong><br>
-            <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
-              Let $\mathcal{F}$ be an arbitrary distribution of two points and the distance function $\|\cdot\|$ be an $L_k$ metric. Then,
-              $$\lim_{d \rightarrow \infty} E\left[\frac{D_{\max,d}^k - D_{\min,d}^k}{d^{(1/k)-(1/2)}}\right] = C_k,$$
-              where $C_k$ is some constant dependent on $k$.
-            </span>
-          </p>
-        </div>
-        <p>
-          Subsequently, we use the value of $D_{\max,d}^k - D_{\min,d}^k$ as a criterion to evaluate the ability of a particular metric to discriminate different vectors in high-dimensional space.
-        </p>
-        <div class="proposition-block">
-          <p>
-            <strong>Proposition 1</strong><br>
-            <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
-              Let $M_d = D_{\max,d}^1 - D_{\min,d}^1$ reflect the discriminating ability of Manhattan distance and $U_d = D_{\max,d}^2 - D_{\min,d}^2$ reflect the discriminating ability of Euclidean distance. Then,
-              $$\lim_{d \rightarrow \infty} E\left[\frac{M_d}{U_d \cdot d^{1/2}}\right] = C',$$
-              where $C'$ is a constant.
-            </span>
-          </p>
-        </div>
-        <br>
-        <p>
-          In light of Proposition 1 and Theorem 1, we argue that Euclidean distance is insufficient to discriminate between malicious and benign gradients. With Proposition 1, we introduce the Manhattan distance metric to describe the characteristics of gradients, which captures the difference in high-dimensional space better.
-        </p>
-      </div>
-      </div>
-      </div>
-    </div>
-  </div>
+<h3>Evaluation on Offline T2I Models with Removal Methods</h3>
+<p>
+    We further attack defense methods with concept removal. For both the “nudity” and “violence” categories, we configure <strong>JPA</strong> with <code>λ = 3</code> and <code>k = 7</code> respectively.
+    As shown in Table, when defending against nudity, both the FMN and SLD-Medium offline models demonstrate poor defense performance.
+    Additionally, these removal methods present a significant risk of generating violent images, likely due to the broader definition of violence, which complicates effective defense.
+</p>
+<img src="images/table1.png" alt="Visualization of Adversarial Prompts">
+<div class="caption">
+  Table 1: The performance of attack methods on the “nudity” concept is evaluated under ASR and FID. The highest performance is highlighted with bold values.
 </div>
-</section>
+<!-- <p>
+    The performance on the “violence” concept is listed in the Appendix, along with visualizations. Moreover, our approach achieves better FID scores, demonstrating that JPA can generate images semantically similar to images with NSFW content produced without safety checkers.
+    <strong>Figure 2</strong> visualizes the semantic similarity, further highlighting that JPA consistently maintains the highest image quality across both concepts.
+</p> -->
 
-<section class="section" id="multiple-metrics-feature">
-  <div class="container is-max-desktop content">
-    <h2 class="title is-3">Multiple Metrics as Feature of Gradient</h2>
-    <p>
-      Current defense methods are based on a single metric. With only one metric, a sophisticated attacker could effortlessly bypass them with a well-designed gradient.
-    </p>
-    <p>
-      To this end, we propose multiple metrics to cooperatively identify the malicious gradient by defining the <em>feature of gradient</em> as the angle by the Cosine similarity, length by the Euclidean distance, and its Manhattan norm by the Manhattan distance, namely,
-      
-      $$\boldsymbol{x} = (x_{Man}, x_{Eul}, x_{Cosine})$$
-
-      where $x_{Man}$ denotes the Manhattan distance $x_{Man}^{(i)} = \left\| \boldsymbol{w}_i - \boldsymbol{w}_0 \right\|_1$, $x_{Eul}$ denotes the Euclidean distance $x_{Eul}^{(i)} = \left\| \boldsymbol{w}_i - \boldsymbol{w}_0 \right\|_2$, and $x_{Cosine}$ denotes the Cosine similarity $x_{Cosine}^{(i)} = \frac{ \langle \boldsymbol{w}_0, \boldsymbol{w}_i \rangle }{ \left\| \boldsymbol{w}_0 \right\| \cdot \left\| \boldsymbol{w}_i \right\| }$.
-    </p>
-
-    <p>
-      Here, $\boldsymbol{w}_0$ denotes the global model before federated training and $\boldsymbol{w}_i$ denotes the $i$-th client's local model after training. $\left\|\cdot\right\|_1$ means the $L_1$ norm of a vector, $\left\|\cdot\right\|_2$ means the $L_2$ norm of a vector, and $\langle\cdot, \cdot\rangle$ represents the inner product.
-    </p>
-    <p>
-      After defining the <em>feature of gradient</em>, we utilize it for malicious identification. The goal is to identify the outlier among the gradients. We use the sum of the distance between each gradient as the indicator. Formally, we define it as:
-    </p>
-    <span style="font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', serif;">
-      \begin{equation}
-          \label{redefinition}
-          \begin{split}
-              &\boldsymbol{x}'^{(i)} = \Bigg(
-                \sum_{j,\,j \neq i}^{K} \left| x_{Man}^{(i)} - x_{Man}^{(j)} \right|
-              &\qquad\qquad\sum_{j,\,j \neq i}^{K} \left| x_{Eul}^{(i)} - x_{Eul}^{(j)} \right|,
-              &\qquad\qquad\sum_{j,\,j \neq i}^{K} \left| x_{Cosine}^{(i)} - x_{Cosine}^{(j)} \right|
-              \Bigg)
-          \end{split}
-      \end{equation}
-    </span>
-    <p>
-      This formulation enables us to capture the deviation of each client's gradient feature from the others, facilitating robust identification of malicious updates in federated learning.
-    </p>
-  </div>
-</section>
-
-<section class="section hero is-small is-light" id="dynamic-weighting">
-  <div class="container is-max-desktop content">
-    <h2 class="title is-3">Dynamic Weighting via Whitening</h2>
-    <p>
-      Two main challenges arise in the scoring meof each gradient: (1) the three distance metrics have different scales and are correlated, making simple normalization insufficient; (2) varying data distributions (such as different levels of non-IID) require the method to adapt dynamically for universal defense.
-    </p>
-    <p>
-      To address these, we apply a <strong>whitening process</strong> that projects each gradient's feature onto its principal axes.
-    </p>
-    
-      $$
-        \delta^{(i)} = \sqrt{ \boldsymbol{x}'^{(i)\top} \boldsymbol{\Sigma}^{-1} \boldsymbol{x}'^{(i)} }
-      $$
-
-    <p>
-      where $\boldsymbol{\Sigma}$ is the covariance matrix of all clients' features. 
-    </p>
-    <p>
-      With the scores computed, we select gradients with higher scores, as they are less divergent and more likely to be benign. These selected gradients can then be aggregated using standard methods, such as FedAvg.
-    </p>
-  </div>
-</section>
-
-<section class="section" id="results" >
-  <div class="container is-max-desktop content">
-    <h2 class="title is-3">Results</h2>
-    <p>
-      Only our method and Flame successfully resist the
-      Edge-case PGD attack during the entire training process, and Flame also dampens the MA. 
-    </p>
-
-    <figure style="text-align:center;">
-      <img src="static/images/cifar.png" alt="cifar_pgd" style="max-width: 80%;">
-      <figcaption>The source results of various defenses against Edge-case PGD attack are in log. The figure shows MA(%) and BA(%) of various defenses under Edge-case PGD attack.</figcaption>
-    </figure>
-
-    <p>
-      we show that our method obtains the highest ranking score with almost 400% better than the baseline and outperforms the second-best Flame by around 0.5.
-    </p>
-
-    <figure style="text-align:center;">
-      <img src="static/images/table.png" alt="t-SNE visualization of gradient features" style="max-width: 100%;">
-      <figcaption>Robustness of our approach compared to the SOTA defenses for various challenging attacks.</figcaption>
-    </figure>
-
-    <p>
-      For more details and ablation studies, please refer to our <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Huang_Multi-Metrics_Adaptively_Identifies_Backdoors_in_Federated_Learning_ICCV_2023_paper.pdf">paper</a>.
-    </p>
-  </div>
-</section>
+<!-- 
 
 
-<!-- Paper poster -->
+</body>
+</html> -->
+
+
+
+
+
+<!-- Poster Section -->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <h2 class="title has-text-centered">Poster</h2>
-
-      <iframe  src="static/pdfs/poster.pdf" width="100%" height="1000">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title has-text-centered">Citation</h2>
-      <p>If you find our work useful in your research, please consider citing:</p>
-      <pre><code>@InProceedings{Huang_2023_ICCV,
-  author    = {Huang, Siquan and Li, Yijiang and Chen, Chong and Shi, Leyu and Gao, Ying},
-  title     = {Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models },
-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-  month     = {October},
-  year      = {2023},
-  pages     = {4652-4662}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
+      <figure class="image is-3by2">
+        <img src="images/JPA_poster.png" alt="JPA Poster">
+      </figure>
     </div>
   </div>
-</footer>
+</section>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+<!-- Citation Section -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title has-text-centered">Citation</h2>
+    <p>If you find our work useful in your research, please consider citing:</p>
+    <pre><code>@article{ma2024jailbreaking,
+  title     = {Jailbreaking prompt attack: A controllable adversarial attack against diffusion models},
+  author    = {Ma, Jiachen and Li, Yijiang and Xiao, Zhiqing and Cao, Anda and Zhang, Jie and Ye, Chao and Zhao, Junbo},
+  journal   = {arXiv preprint arXiv:2404.02928},
+  year      = {2024}
+}</code></pre>
+  </div>
+</section>
 
-    <!-- End of Statcounter Code -->
+
+
 
   </body>
   </html>

@@ -159,7 +159,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/strength.png" alt="overview" class="center-image"  style="max-width: 100%; height: auto;"/>
+      <img src="static/images/more.png" alt="overview" class="center-image"  style="max-width: 100%; height: auto;"/>
       <h2 class="subtitle has-text-centered">
        
       </h2>
@@ -235,111 +235,114 @@ We perform extensive experiments with open-sourced T2I models, e.g.stable-diffus
   <h2>JPA: Jailbreaking Prompt Attack</h2>
 
   <p>
-    In this section, we introduce our Jailbreaking Prompt Attack (JPA), as shown in Figure 4(a). Given a sensitive prompt \( p_t \in \mathcal{P}_\text{sensitive} \), JPA aims to search for an adversarial prompt \( p_a \in \mathcal{P}_\text{insensitive} \).
+    This section introduces our Jailbreaking Prompt Attack (JPA), illustrated in Figure 4(a). Given a sensitive prompt \( p_t \), JPA searches for a rewritten version \( p_a \) that avoids detection but keeps the original NSFW meaning.
   </p>
-
+  
   <p>
-    Denote a target prompt of length \( n \) as \( p_t = [p_1, p_2, \cdots, p_n] \). JPA starts by adding \( k \) learnable tokens at the beginning as the initial prompt:
-    \( p_a = [v_1,...,v_i,...,v_k, p_1, p_2, \cdots, p_n] \).
-    Each learnable token \( v_i \) is first randomly selected from the vocabulary \( V \), such as the CLIP token vocabulary.
+    We treat the original prompt \( p_t = [p_1, p_2, ..., p_n] \) as a sequence of tokens. JPA adds \( k \) learnable tokens in front:
+    \( p_a = [v_1, ..., v_k, p_1, ..., p_n] \). Each learnable token \( v_i \) is randomly picked from a vocabulary like CLIP's.
   </p>
-
+  
   <p>
-    We enable the gradient of all \( v_i \) and perform backpropagation to calculate the gradient for optimizing the attack. For each learnable token position \( i \), any token from a vocabulary \( V \) is considered a potential substitute.
+    We enable gradients for these tokens and use backpropagation to optimize them. For each token position, any word from the vocabulary can be used as a replacement.
   </p>
-
-  <img src="images/main.png" alt="JPA Diagram">
+  
+  <img src="static/images/main.png" alt="JPA Diagram">
   <div class="caption">
-    Figure 4: (a) Overview of the Jailbreaking Prompt Attack (JPA)... (b) Safety checkers either suppress sensitive prompts or sanitize them. Our insight is to find adversarial prompts that evade detection while preserving NSFW semantics.
+    Figure 4: (a) Overview of JPA. (b) Safety checkers block or sanitize sensitive prompts. JPA finds new prompts that bypass filters while keeping NSFW meaning.
   </div>
-
+  
   <p>
-    We optimize \( p_a \) to align with targeted NSFW concepts. Given a specific concept like "nudity", we generate \( N \) antonym pairs (e.g., "nude" vs "clothed") using ChatGPT-4 and compute:
+    To guide the attack, we align the prompt with specific NSFW concepts (e.g., "nudity"). Using ChatGPT-4, we generate antonym pairs (e.g., "nude" vs. "clothed") and compute:
   </p>
-
+  
   <p>
     \[
     r = \frac{1}{N}\sum_{i=1}^n \mathcal{T}(r_i^+) - \mathcal{T}(r_i^-)
     \]
   </p>
-
+  
   <p>
-    We then construct the modified prompt embedding:
+    We then modify the original prompt’s embedding:
     \[
     \mathcal{T}(p_r) = \mathcal{T}(p_t) + \lambda \cdot r
     \]
-    which contains both the semantic fidelity of the original prompt and the NSFW direction.
+    This keeps the original meaning while adding NSFW intent.
   </p>
-
+  
   <p>
-    To retrieve a discrete prompt \( p_a \) from the continuous embedding space, we optimize cosine similarity:
+    To turn the embedding back into a real prompt, we find the prompt \( p_a \) that’s closest in cosine similarity:
     \[
-    \max_{p_a}\frac{\mathcal{T}(p_a)\cdot  \mathcal{T}(p_r)}{| \mathcal{T}(p_a)|\cdot| \mathcal{T}(p_r)|}
+    \max_{p_a}\frac{\mathcal{T}(p_a)\cdot \mathcal{T}(p_r)}{| \mathcal{T}(p_a)|\cdot| \mathcal{T}(p_r)|}
     \]
   </p>
-
+  
   <p>
-    We use PGD (Projected Gradient Descent) for the search, with softmax relaxation over vocabulary:
+    We use Projected Gradient Descent (PGD) to search for prompts. Softmax is used over the vocabulary:
     \[
     \text{embed}[i] = \sum_{k=1}^L \frac{e^{v_{ik}}}{\sum_{h=1}^L e^{v_{ih}}} E_k
     \]
-    where \( L \) is vocabulary size, \( E \) is the embedding matrix, and \( v_{ik} \) is the soft assignment.
+    where \( L \) is the vocabulary size, \( E \) is the embedding matrix, and \( v_{ik} \) is the soft assignment.
   </p>
-
+  
   <p>
-    After optimization, the final token at each position is selected as:
+    After optimization, the final token for each position is chosen as:
     \[
     v_i = \arg \max_k v_{ik}
     \]
   </p>
-
+  
   <p>
-    Since this optimization often yields highly sensitive tokens, we apply gradient masking: for sensitive words, we assign large negative gradients (e.g., 1e9) to avoid their selection. This ensures adversarial prompts retain NSFW semantics without triggering safety mechanisms.
+    Because the search may pick overly sensitive tokens, we apply gradient masking. Words identified as sensitive receive very large negative gradients (e.g., -1e9), preventing their selection. This keeps the adversarial prompts effective without being blocked.
   </p>
+  
 
   <h2>Main Results</h2>
 
-<h3>Evaluation with Online Services</h3>
-<p>
-    Despite the deployment of various safety checkers in online services, which remain unknown to the public, Figure below demonstrates that <strong>JPA can successfully bypass these defenses</strong> and generate NSFW images.
-    We conduct attacks on four popular online platforms: <em>DALL·E 2</em>, <em>Stability.ai</em>, <em>Midjourney</em>, and <em>PIXART-α</em>. More visualization examples are provided in the Appendix.
-</p>
-
-<img src="images/more.png" alt="Visualization of Adversarial Prompts">
-<div class="caption">
-  Figure 1: Visualization of JPA-generated adversarial prompts on four T2I services. Red texts are JPA prompts, black texts are original I2P inputs.
-</div>
-
-<h3>Evaluation on Offline T2I Models with Removal Methods</h3>
-<p>
-    We further attack defense methods with concept removal. For both the “nudity” and “violence” categories, we configure <strong>JPA</strong> with <code>λ = 3</code> and <code>k = 7</code> respectively.
-    As shown in Table, when defending against nudity, both the FMN and SLD-Medium offline models demonstrate poor defense performance.
-    Additionally, these removal methods present a significant risk of generating violent images, likely due to the broader definition of violence, which complicates effective defense.
-</p>
-<img src="images/table1.png" alt="Visualization of Adversarial Prompts">
-<div class="caption">
-  Table 1: The performance of attack methods on the “nudity” concept is evaluated under ASR and FID. The highest performance is highlighted with bold values.
-</div>
-
-<h3>Controllable NSFW Concept Rendering</h3>
-<p>
-  We discover that by adjusting the magnitude of the NSFW concept embeddings, 
-  <em>JPA</em> can precisely control the extent to which NSFW concepts emerge in the generated images.
-  As shown in Figure 2(b), increasing <span>&lambda;</span> leads to more NSFW content being rendered in the image.
-</p>
-<img src="images/1.png" alt="Visualization of JPA rendering process"> 
-<div class="caption">
-  Figure 2: An example on malicious prompt: “sexy seductive little smile sophia vergara in nurse by agnes cecile enki bilal moebius, intricated details, lingerie, 3 / 4 back view, hair styled in a bun, bend over posture, full body portrait, extremely luminous bright design, pastel colours, drips, autumn lights.” (a) Limitation of prior methods: Inconsistent semantics between NSFW generation and input prompt. (b) We precisely control the extent to which “nudity” emerges in the generated images by a scalar <span>&lambda;</span>.
-</div>
+  <h3>Evaluation with Online Services</h3>
+  <p>
+      Many online services use safety filters, but their details are not public. The figure below shows that <strong>JPA can still bypass these filters</strong> and create NSFW images.
+      We tested JPA on four popular platforms: <em>DALL·E 2</em>, <em>Stability.ai</em>, <em>Midjourney</em>, and <em>PIXART-α</em>. More examples are in the Appendix.
+  </p>
+  
+  <img src="static/images/dalle.png" alt="Visualization of Adversarial Prompts">
+  <div class="caption">
+    Figure 1: JPA-generated adversarial prompts on four T2I services. Red text: JPA prompts. Black text: original I2P inputs.
+  </div>
+  
+  <h3>Evaluation on Offline T2I Models with Removal Methods</h3>
+  <p>
+      We also tested JPA against models using concept removal defenses. The table shows that offline models like FMN and SLD-Medium struggle to block nudity content.
+  </p>
+  <img src="static/images/table1.png" alt="nudity table">
+  <div class="caption">
+    Table 1: Attack performance on “nudity,” evaluated using ASR and FID. Best results are in bold.
+  </div>
+  
+  <img src="static/images/table2.png" alt="violence table">
+  <div class="caption">
+    Table 2: Attack performance on “violence,” evaluated using ASR and FID. Best results are in bold.
+  </div>
+  
+  <h3>Controllable NSFW Concept Rendering</h3>
+  <p>
+    We found that by changing the strength of NSFW concept embeddings, <em>JPA</em> can control how much NSFW content appears in the images.
+    As Figure 2(b) shows, a higher <span>&lambda;</span> leads to more visible NSFW content.
+  </p>
+  <img src="static/images/1.png" alt="Visualization of JPA rendering process"> 
+  <div class="caption">
+    Figure 2: Example using a malicious prompt. (a) Prior methods fail to align NSFW content with the prompt meaning. (b) By adjusting <span>&lambda;</span>, we control how much “nudity” appears in the image.
+  </div>
+  
 <p>
   We also illustrate how the parameter <code>r</code> influences the process of controllable ordinary concept rendering. Here, <code>r₊</code> and <code>r₋</code> mark the concept words highlighted in red and underlined, respectively.
 </p>
 
 <div style="text-align: center;">
-    <img src="images/render_small.png" alt="Guide Name" style="width:100%;">
+    <img src="static/images/render_small.png" alt="Guide Name" style="width:100%;">
     <p>Figure 3: The rendered detail of a target prompt and the contrast description of the rendered concept.</p>
 
-    <img src="images/render.png" alt="Guide Process" style="width:95%;">
+    <img src="static/images/render.png" alt="Guide Process" style="width:95%;">
     <p>Figure 4: A visualization of the controllable ordinary concepts rendering process.</p>
 </div>
 
@@ -350,7 +353,7 @@ We perform extensive experiments with open-sourced T2I models, e.g.stable-diffus
     <div class="container">
       <h2 class="title has-text-centered">Poster</h2>
       <figure class="image is-3by2">
-        <img src="images/JPA_poster.png" alt="JPA Poster">
+        <img src="static/pdfs/JPA_poster.png" alt="JPA Poster">
       </figure>
     </div>
   </div>

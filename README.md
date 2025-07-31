@@ -5,6 +5,7 @@
 </div>
 
 Welcome to the official implementation of the paper: [Jailbreaking Prompt Attack: A Controllable Adversarial Attack against Diffusion Models](https://arxiv.org/abs/2404.02928). This work introduces one fast and efficient attack methods to generate toxic content for safety-driven diffusion models.
+🔗 JPA Project Webpage: https://mjc-ma.github.io/JPA
 <table align="center">
   <tr>
     <td align="center"> 
@@ -89,7 +90,7 @@ For ```style```:
 <table align="center">
   <tr>
     <td align="center"> 
-      <img src="imgs/online.png" alt="Image 2" style="width: 1000px;"/> 
+      <img src="imgs/render_small.png" alt="Image 2" style="width: 1000px;"/> 
       <br>
       <div align="center"><b>Figure 3:</b> Concepts pairs of the general concepts.</div>
     </td>
@@ -100,7 +101,7 @@ For ```style```:
 <table align="center">
   <tr>
     <td align="center"> 
-      <img src="imgs/pic4.png" alt="Image 4" style="width: 1000px;"/> 
+      <img src="imgs/render.png" alt="Image 4" style="width: 1000px;"/> 
       <br>
       <div align="center"><b>Figure 4:</b> Visualization of the concept rendering process showing step-by-step progression.</div>
     </td>
